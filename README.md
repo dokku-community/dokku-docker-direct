@@ -10,7 +10,7 @@ sudo git clone git@github.com:heichblatt/dokku-docker-direct.git docker-direct
 sudo dokku plugins-install
 ```
 
-## Issue Docker
+## Usage
 
 Issue Docker command
 ```bash

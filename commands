@@ -17,11 +17,9 @@ case "$SUBCOMMAND" in
   docker-direct)
     [[ $# -lt 2 ]] && echo Wrong number of command line arguments: $#.
     shift
-    shift
     "$DOCKER" "$@"
     ;;
   dodi)
-    shift
     "$0" docker-direct "$@"
     ;;
   help)

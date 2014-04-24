@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+
+OLDIFS="$IFS"
+IFS=" "
+SUBCOMMAND="$1"
+export NAMESPACE=${NAMESPACE:="dokku"}
+APP="$NAMESPACE/$2":latest
+DOCKER=$(which docker)
+
+if [ $# -lt 1 ] && [ "$1" != "help" ]
+then
+  SUBCOMMAND=help
+fi
+
+case "$SUBCOMMAND" in
+  docker-direct)
+    [[ $# -lt 2 ]] && echo Wrong number of command line arguments: $#.
+    shift
+    shift
+    "$DOCKER" "$@"
+    ;;
+  dodi)
+    shift
+    "$0" docker-direct "$@"
+    ;;
+  help)
+   cat && cat<<EOF
+    docker-direct <cmd>                                     issue Docker command <cmd>
+    dodi <cmd>                                              shortcut for docker-direct
+EOF
+    ;;
+esac
+
+IFS="$OLDIFS"

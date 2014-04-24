@@ -20,6 +20,7 @@ case "$SUBCOMMAND" in
     "$DOCKER" "$@"
     ;;
   dodi)
+    shift
     "$0" docker-direct "$@"
     ;;
   help)

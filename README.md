@@ -14,8 +14,8 @@ sudo dokku plugins-install
 
 Issue Docker command
 ```bash
-docker-direct <app>
-dodi <app>
+docker-direct <docker-command>
+dodi <docker-command>
 ```
 
 ## Example

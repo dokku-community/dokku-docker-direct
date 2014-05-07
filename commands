@@ -25,8 +25,8 @@ case "$SUBCOMMAND" in
     ;;
   help)
    cat && cat<<EOF
-    docker-direct <cmd>                                     issue Docker command <cmd>
-    dodi <cmd>                                              shortcut for docker-direct
+    docker-direct <cmd>                             issue Docker command <cmd>
+    dodi <cmd>                                      shortcut for docker-direct
 EOF
     ;;
 esac

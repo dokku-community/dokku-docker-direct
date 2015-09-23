@@ -1,27 +1,39 @@
-# dokku-docker-direct
+# dokku-docker-direct [![Build Status](https://img.shields.io/travis/heichblatt/dokku-docker-direct.svg?branch=master "Build Status")](https://travis-ci.org/heichblatt/dokku-docker-direct)
 
-Issue Docker commands via dokku.
+Issue docker commands directly via a dokku plugin.
 
-## Installation
+## requirements
 
-```bash
+- dokku 0.4.0+
+- docker 1.8.x
+
+## installation
+
+```shell
+# on 0.3.x
 cd /var/lib/dokku/plugins
-sudo git clone git@github.com:heichblatt/dokku-docker-direct.git docker-direct
-sudo dokku plugins-install
+git clone https://github.com/dokku/dokku-redis.git redis
+dokku plugins-install
+
+# on 0.4.x
+dokku plugin:install https://github.com/dokku/dokku-redis.git redis
 ```
 
-## Usage
+## commands
 
-Issue Docker command
-```bash
-docker-direct <docker-command>
-dodi <docker-command>
+```shell
+docker-direct <command>        Issue docker command <command>
 ```
 
-## Example
+## usage
 
-View currently running containers:
-
-```bash
+```shell
+# view currently running containers
 ssh dokku@your_host docker-direct ps
+
+# list all images
+ssh dokku@your_host docker-direct images
+
+# inspect a container
+ssh dokku@your_host docker-direct inspect $CID
 ```

@@ -1,34 +1,33 @@
 #!/usr/bin/env bash
+[[ " docker-direct help docker-direct:help " == *" $1 "* ]] || exit $DOKKU_NOT_IMPLEMENTED_EXIT
 set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
 
 OLDIFS="$IFS"
 IFS=" "
-SUBCOMMAND="$1"
-export NAMESPACE=${NAMESPACE:="dokku"}
-APP="$NAMESPACE/$2":latest
 DOCKER=$(which docker)
 
-if [ $# -lt 1 ] && [ "$1" != "help" ]
-then
-  SUBCOMMAND=help
-fi
-
-case "$SUBCOMMAND" in
+case "$1" in
   docker-direct)
-    [[ $# -lt 2 ]] && echo Wrong number of command line arguments: $#.
-    shift
+    [[ -z $2 ]] && dokku_log_fail "Please specify a docker command to run"
     "$DOCKER" "$@"
     ;;
-  dodi)
-    shift
-    "$0" docker-direct "$@"
-    ;;
-  help)
-   cat && cat<<EOF
-    docker-direct <cmd>                             issue Docker command <cmd>
-    dodi <cmd>                                      shortcut for docker-direct
+
+  help | docker-direct:help)
+    HELP=$(cat<<EOF
+    docker-direct <cmd>, Issue docker command <cmd>
 EOF
+)
+    if [[ -n $DOKKU_API_VERSION ]]; then
+      echo "$HELP"
+    else
+      cat && echo "$HELP"
+    fi
     ;;
+
+  *)
+    exit "$DOKKU_NOT_IMPLEMENTED_EXIT"
+    ;;
+
 esac
 
 IFS="$OLDIFS"

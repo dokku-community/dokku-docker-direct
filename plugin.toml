@@ -1,0 +1,4 @@
+[plugin]
+description = "Issue Docker commands via dokku"
+version = "0.0.1"
+[plugin.config]

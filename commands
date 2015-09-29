@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+source "$PLUGIN_CORE_AVAILABLE_PATH/common/functions"
 
 OLDIFS="$IFS"
 IFS=" "
@@ -8,26 +9,20 @@ export NAMESPACE=${NAMESPACE:="dokku"}
 APP="$NAMESPACE/$2":latest
 DOCKER=$(which docker)
 
-if [ $# -lt 1 ] && [ "$1" != "help" ]
-then
-  SUBCOMMAND=help
-fi
-
 case "$SUBCOMMAND" in
-  docker-direct)
-    [[ $# -lt 2 ]] && echo Wrong number of command line arguments: $#.
+  dodi | docker-direct)
+    [[ $# -lt 2 ]] && dokku_log_fail "Wrong number of command line arguments: $#"
     shift
     "$DOCKER" "$@"
     ;;
-  dodi)
-    shift
-    "$0" docker-direct "$@"
-    ;;
   help)
-   cat && cat<<EOF
-    docker-direct <cmd>                             issue Docker command <cmd>
-    dodi <cmd>                                      shortcut for docker-direct
+    cat && cat<<EOF
+    docker-direct <cmd>, Issues Docker command "docker <cmd>"
+    dodi <cmd>, Alias for docker-direct.
 EOF
+    ;;
+  *)
+    exit $DOKKU_NOT_IMPLEMENTED_EXIT
     ;;
 esac
 

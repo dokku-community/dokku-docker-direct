@@ -15,14 +15,10 @@ then
 fi
 
 case "$SUBCOMMAND" in
-  docker-direct)
+  dodi | docker-direct)
     [[ $# -lt 2 ]] && dokku_log_fail "Wrong number of command line arguments: $#"
     shift
     "$DOCKER" "$@"
-    ;;
-  dodi)
-    shift
-    "$0" docker-direct "$@"
     ;;
   help)
     cat && cat<<EOF

@@ -30,6 +30,9 @@ case "$SUBCOMMAND" in
     dodi <cmd>, Alias for docker-direct.
 EOF
     ;;
+  *)
+    exit $DOKKU_NOT_IMPLEMENTED_EXIT
+    ;;
 esac
 
 IFS="$OLDIFS"

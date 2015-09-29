@@ -9,11 +9,6 @@ export NAMESPACE=${NAMESPACE:="dokku"}
 APP="$NAMESPACE/$2":latest
 DOCKER=$(which docker)
 
-if [ $# -lt 1 ] && [ "$1" != "help" ]
-then
-  SUBCOMMAND=help
-fi
-
 case "$SUBCOMMAND" in
   dodi | docker-direct)
     [[ $# -lt 2 ]] && dokku_log_fail "Wrong number of command line arguments: $#"

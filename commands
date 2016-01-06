@@ -10,7 +10,7 @@ DOCKER=$(which docker)
 case "$1" in
   docker-direct)
     [[ -z $2 ]] && dokku_log_fail "Please specify a docker command to run"
-    "$DOCKER" "$@"
+    shift ; "$DOCKER" "$@"
     ;;
 
   help | docker-direct:help)

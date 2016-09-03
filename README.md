@@ -1,4 +1,4 @@
-# dokku-docker-direct [![Build Status](https://img.shields.io/travis/heichblatt/dokku-docker-direct.svg?branch=master "Build Status")](https://travis-ci.org/heichblatt/dokku-docker-direct)
+# dokku-docker-direct [![Build Status](https://img.shields.io/travis/josegonzalez/dokku-docker-direct.svg?branch=master "Build Status")](https://travis-ci.org/josegonzalez/dokku-docker-direct)
 
 Issue docker commands directly via a dokku plugin.
 
@@ -10,13 +10,8 @@ Issue docker commands directly via a dokku plugin.
 ## installation
 
 ```shell
-# on 0.3.x
-cd /var/lib/dokku/plugins
-git clone https://github.com/heichblatt/dokku-docker-direct.git docker-direct
-dokku plugins-install
-
 # on 0.4.x
-dokku plugin:install https://github.com/heichblatt/dokku-docker-direct.git docker-direct
+dokku plugin:install https://github.com/josegonzalez/dokku-docker-direct.git docker-direct
 ```
 
 ## commands

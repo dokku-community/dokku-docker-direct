@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+source "$PLUGIN_CORE_AVAILABLE_PATH/common/functions"
+source "$PLUGIN_AVAILABLE_PATH/ecr/functions"
+
+docker-direct-main-cmd() {
+  declare desc="executes a docker command"
+  local cmd="docker-direct"
+  [[ "$1" == "$cmd" ]] && shift 1
+  [[ -z $1 ]] && dokku_log_fail "Please specify a docker command to run"
+
+  local DOCKER
+  DOCKER=$(which docker)
+  "$DOCKER" "$@"
+}
+
+docker-direct-main-cmd "$@"

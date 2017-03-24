@@ -1,4 +1,4 @@
-# dokku-docker-direct [![Build Status](https://img.shields.io/travis/josegonzalez/dokku-docker-direct.svg?branch=master "Build Status")](https://travis-ci.org/josegonzalez/dokku-docker-direct)
+# dokku-docker-direct [![Build Status](https://img.shields.io/travis/dokku-community/dokku-docker-direct.svg?branch=master "Build Status")](https://travis-ci.org/josegonzalez/dokku-docker-direct)
 
 Issue docker commands directly via a dokku plugin.
 
